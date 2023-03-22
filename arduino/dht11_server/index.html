@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practica03</title>
+    <link href="estilo.css" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"
+        id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+
+    <div class="span7">
+        <div class="widget stacked widget-table action-table">
+            <div class="widget-header">
+                <h3>Datos:</h3>
+            </div>
+            <div class="hola">
+
+                <button onclick='recuperaHumedad()' type="button" class="boton">Humedad(%)</button>
+                <button onclick='recuperaCentigrados()' type="button" class="boton">Temperatura en Celcius(C)</button>
+                <button onclick='recuperaFahrentheit()' type="button" class="boton">Temperatura en Fahrenheit(F)</button>
+                <button onclick='recuperaIndiceCalorC()' type="button" class="boton">Indice Calor en Celcius(C)</button>
+                <button onclick='recuperaIndiceCalorF()' type="button" class="boton">Indice Calor en Fahrenheit (F)</button>
+
+                <table class="table table-sm table-dark">
+                    <thead>
+                        <tr>
+                            <th>Tipo</th>
+                            <th>Valor</th>
+                        </tr>
+                    </thead>
+                    <tbody id="contenidoTabla">
+                        <tr>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+    <script>
+        function recuperaHumedad() {
+            axios({
+                method: "GET",
+                url: 'http://192.168.0.125/humedad',
+            }).then((res) => {
+                var respuesta=res.data;
+                let contenido=`<tr>
+                            <th>Humedad</th>
+                            <th>${respuesta.humedad}</th>
+                        </tr>`;
+                        contenidoTabla.innerHTML += contenido;
+            }).catch(error => {
+                console.log(error);
+                throw new Error(error);
+            });
+        }
+
+        function recuperaCentigrados() {
+            axios({
+                method: "GET",
+                url: 'http://192.168.0.125/centigrados',
+            }).then((res) => {
+                var respuesta=res.data;
+                let contenido=`<tr>
+                            <th>Temperatura (C°)</th>
+                            <th>${respuesta.centigrados}</th>
+                        </tr>`;
+                        contenidoTabla.innerHTML += contenido;
+            }).catch(error => {
+                console.log(error);
+                throw new Error(error);
+            });
+        }
+
+        function recuperaFahrentheit() {
+            axios({
+                method: "GET",
+                url: 'http://192.168.0.125/fahrenheit',
+            }).then((res) => {
+                var respuesta=res.data;
+                let contenido=`<tr>
+                            <th>Temperatura (F)</th>
+                            <th>${respuesta.fahrenheit}</th>
+                        </tr>`;
+                        contenidoTabla.innerHTML += contenido;
+            }).catch(error => {
+                console.log(error);
+                throw new Error(error);
+            });
+        }
+
+        function recuperaIndiceCalorC() {
+            axios({
+                method: "GET",
+                url: 'http://192.168.0.125/indiceCalorC',
+            }).then((res) => {
+                var respuesta=res.data;
+                let contenido=`<tr>
+                            <th>IndideCalor (C)</th>
+                            <th>${respuesta.indiceCalorC}</th>
+                        </tr>`;
+                        contenidoTabla.innerHTML += contenido;
+            }).catch(error => {
+                console.log(error);
+                throw new Error(error);
+            });
+        }
+
+        function recuperaIndiceCalorF() {
+            axios({
+                method: "GET",
+                url: 'http://192.168.0.125/indiceCalorF',
+            }).then((res) => {
+                var respuesta=res.data;
+                let contenido=`<tr>
+                            <th>IndiceCalor (F)</th>
+                            <th>${respuesta.indiceCalorF}</th>
+                        </tr>`;
+                        contenidoTabla.innerHTML += contenido;
+            }).catch(error => {
+                console.log(error);
+                throw new Error(error);
+            });
+        }
+
+    </script>
+</body>
+
+</html>

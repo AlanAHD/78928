@@ -1,0 +1,18 @@
+.boton {
+    background-color: gray;
+    margin: 10px;
+    color: black;
+    font-size: 14px;
+    width: 75%;
+    height: 65px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: color 0.4s linear;
+    position: relative;
+    overflow: hidden;
+    z-index: 1
+}
+.hola{
+    display: flex;
+}
